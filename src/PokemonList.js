@@ -14,22 +14,7 @@ export default class PokemonList extends Component {
         return (
             <>
             {
-                 this.props.pokemon.filter((pokemon) => {
-                    if (!this.props.name) return true;
-                    if(this.props.filter === pokemon.pokemon) return true;
-                    return false;
-                })
-            
-                    .sort((a, b) => {
-                        if (this.props.order ==='descending') {
-                            return b[this.props.sortType] - a[this.props.sortType]
-                        } else {
-                            return a[this.props.sortType] - b[this.props.sortType]
-                        }
-                    })
-
-            
-                    .map((pokemon) => 
+                 this.props.pokemon.map((pokemon) => 
                         <MyPokemonArticle
                         pokemonName={pokemon.pokemon}
                         pokemonType={pokemon.type_1}
@@ -39,8 +24,6 @@ export default class PokemonList extends Component {
                             image={pokemon.url_image}
                             alt={pokemon.shape}
                             />)
-                    
-            
                 }       
         
             </>
@@ -60,4 +43,4 @@ export default class PokemonList extends Component {
 
     // if (pokemon.name === this.props.filter) return true;
 
-    // return false
+    

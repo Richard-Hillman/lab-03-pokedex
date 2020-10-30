@@ -4,89 +4,86 @@ import MyHeader from  './MyHeader.js'
 import MyFooter from './MyFooter.js'
 import PokemonList from './PokemonList.js'
 import pokemon from './Data.js'
-import DropDown from './DropDown.js'
+// import DropDown from './DropDown.js'
 import SearchRender from './SearchRender';
-
+import fetch from 'superagent';
+import Sort from './DropDown';
+// import {
+//   BrowserRouter as Router,
+//   Route,
+//   Switch,
+// } from 'react-router-dom';
+// import Pokedex from './Pokedex.js';
 
 export default class App extends React.Component {
 // This is the coo Zone, I think
 // set m zero state filter so all pokemon show on initial load
 state = { 
   filter:'',
-  sortType:'',
-  order:'',
-  inputValue:'',
-  attack:'',
-  defense:'',
+  form:'',
+  pokemonData:[],
+  sortType:'attack',
+  UporDown:'asc',
+
 }
 
-    handleSubmit = e => {
-      e.preventDefault();
-      this.setState({
-        form:e.target.value
-      })
-    }
+fetchPokemon = async () => {
+  const response = await fetch.get(`https://alchemy-pokedex.herokuapp.com/api/pokedex?pokemon=${this.state.form}&sort=${this.state.sortType}&direction=${this.state.UporDown}`);
+  this.setState({ pokemonData: response.body.results });
+} 
 
-    handleChangeAttack = e => {
-      e.preventDefault();
-      this.setState({
-        form:e.target.value
-      })
-    }
+  componentDidMount = async () => {
+    this.fetchPokemon();
+}
 
-    handleChangeDefense = e => {
-      e.preventDefault();
-      this.setState({
-        form:e.target.value
-      })
-    }
 
-    handleChangeHP = e => {
-      e.preventDefault();
-      this.setState({
-        form:e.target.value
-      })
-    }
+handleSubmit = async (e) => {
+  e.preventDefault();
+  await this.setState({
+    form:this.state.filter
+  })
+  await this.fetchPokemon();
+}
 
-    handleSubmit = e => {
-      e.preventDefault();
-      this.setState({
-        form:e.target.value
-      })
-    }
+handleChange = async (e) => {
+  await this.setState({
+    filter: e.target.value
+  })
+  await this.fetchPokemon();
+}
 
-    handleOrder = e => {
-      this.setState({
-        order: e.target.value
-      })
-    }
+handleSortType = async (e) => {
+  await this.setState({
+    sortType: e.target.value
+  })
+  await this.fetchPokemon();
+}
 
-    handleChange = e => {
-      this.setState({
-        filter: e.target.value
-      })
-    }
-
-    handleSortType = e => {
-        this.setState({
-          sortType: e.target.value
-        })
-    }
-
+ handleOrder = async (e) => {
+  await this.setState({
+    UporDown: e.target.value
+  })
+    await this.fetchPokemon();
+  }
 
   render() {
+
+    console.log(this.state);
     return (
       <>
      
       <div>
         <SearchRender
-        handleSubmit={this.handleSubmit}
+        submitProp={this.handleSubmit}
         handleChange={this.handleChange}
-        handleChangeAttack={this.handleChangeAttack}
-        handleChangeDefense={this.handleChangeDefense}
+        // handleChangeAttack={this.handleChangeAttack}
+        // handleChangeDefense={this.handleChangeDefense}
         />
 
-        <DropDown handlechange={this.handleChange} />
+      <Sort 
+        handleSortType={this.handleSortType}
+        handleOrder={this.handleOrder} /> 
+    
       </div>
 
 {/* ===================================================================================================== */}
@@ -99,16 +96,9 @@ state = {
         
         <div className="pokemonMain">
         <PokemonList
-         pokemon={pokemon}
-         filter={this.state.filter}
-         sortType={this.state.sortType}
-         order={this.state.order} />
+         pokemon={this.state.pokemonData}
+        />
         </div>
-
-      
-        <sort 
-        handleSortType={this.handleSortType}
-        handleOrder={this.handleOrder} />
 
         <MyFooter />
 
@@ -118,3 +108,30 @@ state = {
 }
 
 }
+
+
+
+    // handleChangeAttack = e => {
+    //   e.preventDefault();
+    //   this.setState({
+    //     form:e.target.value
+    //   })
+    // }
+
+    // handleChangeDefense = e => {
+    //   e.preventDefault();
+    //   this.setState({
+    //     form:e.target.value
+    //   })
+    // }
+
+    // handleChangeHP = e => {
+    //   e.preventDefault();
+    //   this.setState({
+    //     form:e.target.value
+    //   })
+    // }
+    
+   
+
+   

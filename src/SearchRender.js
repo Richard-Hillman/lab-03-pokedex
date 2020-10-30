@@ -4,7 +4,7 @@ export default class SearchRender extends Component {
     render() {
         return (
             <div>
-                <form>
+                <form onSubmit={this.props.submitProp}>
                      <label htmlFor="search">Search for a Pokemon</label>
                      <input type="text" onChange={this.props.handleChange}/> 
                      <button>submit</button>
