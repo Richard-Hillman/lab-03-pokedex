@@ -72,7 +72,7 @@ handleSortType = async (e) => {
     return (
       <>
      
-      <div>
+      <div className="top">
         <SearchRender
         submitProp={this.handleSubmit}
         handleChange={this.handleChange}
@@ -89,18 +89,21 @@ handleSortType = async (e) => {
 {/* ===================================================================================================== */}
 
         <div className="main">
+          <div className="header">
 
-        <h1>Confessions 2020: I Used to steal Pokemon Cards, I'm sorry</h1>   
-    
-        <MyHeader />  
-        
-        <div className="pokemonMain">
-        <PokemonList
-         pokemon={this.state.pokemonData}
-        />
-        </div>
+            <h1>Confessions 2020: I Used to steal Pokemon Cards, I'm sorry</h1>   
+            <MyHeader />  
 
-        <MyFooter />
+          </div>
+          <div className="pokemonMain">
+
+          <PokemonList
+          pokemon={this.state.pokemonData}
+          />
+
+          </div>
+
+          <MyFooter />
 
        </div>
      </>

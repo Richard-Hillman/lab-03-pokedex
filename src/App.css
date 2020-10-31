@@ -1,9 +1,24 @@
-/* .pokemonMain {
+.header {
+  background-color: lightseagreen;
+}
+
+.pokemonMain {
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
+  background-color: lightsalmon;
+  margin: 40px;
+}
+
+.top {
+  background-color: lightgoldenrodyellow;
+  height: 100px;
+  display: flex;
+  justify-content: center;
+  margin: 40px;
 }
 
 .pokemonArticle {
-  width: 40px;
-} */
+  width: 250px;
+
+}

@@ -15,9 +15,6 @@ export default class Sort extends Component {
                     <option value="asc">ascending</option>
                     <option value="desc">descending</option>
                 </select>
-
-                
-             
             </div>
         )
     }
