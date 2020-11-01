@@ -1,2 +1,2 @@
-![componentHierarchy](diagram.png)
+![diagram](diagram.png)
 
