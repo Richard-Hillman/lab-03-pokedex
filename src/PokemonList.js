@@ -24,6 +24,7 @@ export default class PokemonList extends Component {
                 return a[this.props.sortType] - b[this.props.sortType]
             }
         })
+
             
         .map((pokemon) => 
                 <MyPokemonArticle
