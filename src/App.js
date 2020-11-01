@@ -17,9 +17,9 @@ export default class App extends React.Component {
     form:'',
     pokemonData:[],
     // was upordown
-    sort1:'asc',
+    sortOrder:'',
     // was sorttype
-    sort2:'attack',
+    sortType:'',
   }
 
 
@@ -43,16 +43,16 @@ export default class App extends React.Component {
 
 
   // THis is handling the sorting of the ascending or descending dropdown selection and taking that value and using it to set the state for when the api is called with fetch pokemon. 
-  sort1HandleChange = (e) => {
+  handleOrder = (e) => {
     this.setState({
-      sort1: e.target.value
+      sortOrder: e.target.value
     })
   }
 
   // This is handling the change in my dropdown for what category I would like to sort by. It targets user selection from dropdown and sets the state and then speaks with api to retrieve state. 
-  sort2HandleChange = (e) => {
+  handleSortType = (e) => {
     this.setState({
-      sort2: e.target.value
+      sortType: e.target.value
     })
   }
 
@@ -63,8 +63,8 @@ export default class App extends React.Component {
       <div className="top">
 
         <SearchRender
-        submitProp={this.handleSubmit}
-        handleChange={this.handleChange}
+        handleSubmit={this.handleSubmit}
+        handleTextChange={this.handleTextChange}
         />
 
         <DropDown 
