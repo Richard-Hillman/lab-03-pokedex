@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 
-// This is my basic singular pokemon article output 
+// This is my basic singular pokemon article output. I use portals to grab the information from the api data.  /
 
 export default class MyPokemonArticle extends Component {
     render() {
